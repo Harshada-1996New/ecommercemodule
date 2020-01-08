@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ord_no: 1
+  ord_tracking_no: 1
+  payment_total: 9.99
+  ord_type: MyString
+
+two:
+  ord_no: 1
+  ord_tracking_no: 1
+  payment_total: 9.99
+  ord_type: MyString
