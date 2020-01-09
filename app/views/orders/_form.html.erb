@@ -30,11 +30,20 @@
     <%= form.label :ord_type %>
     <%= form.text_field :ord_type %>
   </div>
+  
+  <%= form_tag new_order_path, :method => 'get' do %>
+    <%= form.label :product %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "search" %>
+<% end %>
+  
  
-  <div class="field">
-  <%= form.label :product_id %>
-  <%= form.select :product_id, options_for_select(Product.all.collect{|c| [c.prd_name]}), class: 'form-control' %>
-  </div>  
+
+  <%= form.fields_for :product do |product_fields| %>
+    Prd_sku : <%= product_fields.text_field :prd_sku %>
+    Prd_name: <%= product_fields.text_field :prd_name %>
+    Price: <%= product_fields.text_field :price %>
+  <% end %>  
   <div class="actions">
     <%= form.submit %>
   </div>
