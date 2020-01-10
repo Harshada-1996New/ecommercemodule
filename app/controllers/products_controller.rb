@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @product = Product.all
   end
 
   # GET /products/1
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.search(params[:search])
+    @product = Product.new
   end
 
   # GET /products/1/edit
@@ -25,16 +25,12 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+     @product = current_user.products.build(product_params)
+          if @product.save
+            redirect_to root_path
+          else
+           render 'new'
       end
-    end
   end
 
   # PATCH/PUT /products/1
