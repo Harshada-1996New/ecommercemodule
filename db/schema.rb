@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_10_061729) do
+ActiveRecord::Schema.define(version: 2020_01_13_101237) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "land_mark"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2020_01_10_061729) do
     t.datetime "updated_at", null: false
     t.string "selectedproduct"
     t.bigint "user_id"
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -82,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_01_10_061729) do
   add_foreign_key "addresses", "users"
   add_foreign_key "orderproducts", "orders"
   add_foreign_key "orderproducts", "products"
+  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
 end

@@ -1,14 +1,3 @@
-<% if current_user %>
-
-    <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-
-<% else %>
-
-    <%= link_to 'sign up', new_user_registration_path %>
-
-    <%= link_to 'sign in', new_user_session_path %>
-
-<% end %> 
 <%= form_with(model: order, local: true) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
@@ -24,7 +13,7 @@
 
   <div class="field">
     <%= form.label :ord_no %>
-    <%= form.number_field :ord_no %>
+    <%= form.number_field :ord_no, :value => "#{rand(10..1000)}",:readonly => true%>
   </div>
 
   <div class="field">
@@ -41,12 +30,24 @@
     <%= form.label :ord_type %>
     <%= form.text_field :ord_type %>
   </div>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, :value=>current_user.id %>
+  </div>
+
   <%= form.fields_for :product do |product_fields| %>
     <div class="field" >
     <%= product_fields.label :name %>
     <%= product_fields.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name]}),class: 'form-control' %>
     </div> 
   <% end %> 
+  <%= form.fields_for :product do |product_fields| %>
+    <div class="field" >
+      Prd_sku : <%= product_fields.text_field :prd_sku %>
+      Prd_name: <%= product_fields.text_field :prd_name %>
+      Price: <%= product_fields.text_field :price %>
+    </div>    
+  <% end %>
   <%= form.fields_for :address do |address_fields| %>
     <div class="field" >
     <%= address_fields.label :Address %>

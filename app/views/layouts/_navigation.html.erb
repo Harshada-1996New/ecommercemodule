@@ -7,7 +7,7 @@
     <li><a href="#"></a></li>
     <li><a href="#"></a></li>
     <li><a href="#"></a></li>
-    <% if signed_in? && current_user.admin? %>
+    <% if (signed_in? && current_user.admin?) || (signed_in? && !current_user.admin?) %>
         <li><%= link_to 'New Order',new_order_path %></li>
     <% end %> 
     <% if signed_in? %>
