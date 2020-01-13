@@ -25,12 +25,15 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-     @product = current_user.products.build(product_params)
-          if @product.save
-            redirect_to root_path
-          else
-           render 'new'
+     respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   # PATCH/PUT /products/1

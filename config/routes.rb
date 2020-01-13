@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#home'
   resources :addresses
   devise_for :users
   resources :orderproducts
