@@ -37,21 +37,14 @@
 
   <%= form.fields_for :product do |product_fields| %>
     <div class="field" >
-    <%= product_fields.label :name %>
-    <%= product_fields.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name]}),class: 'form-control' %>
+        <%= product_fields.label :name %>
+        <%= product_fields.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name]}),class: 'form-control' %>
     </div> 
   <% end %> 
-  <%= form.fields_for :product do |product_fields| %>
-    <div class="field" >
-      Prd_sku : <%= product_fields.text_field :prd_sku %>
-      Prd_name: <%= product_fields.text_field :prd_name %>
-      Price: <%= product_fields.text_field :price %>
-    </div>    
-  <% end %>
   <%= form.fields_for :address do |address_fields| %>
     <div class="field" >
-    <%= address_fields.label :Address %>
-    <%= address_fields.select :address_id,options_for_select(["billing address","shipping address"]),class: 'form-control' %>
+      <%= address_fields.label :Address %>
+      <%= address_fields.select :address_id,options_for_select(["billing address","shipping address"]),class: 'form-control' %>
     </div> 
   <% end %> 
   <div class="actions">

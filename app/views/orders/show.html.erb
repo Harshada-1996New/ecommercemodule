@@ -24,6 +24,11 @@
   <strong>Ord type:</strong>
   <%= @order.ord_type %>
 </p>
+<strong>your selected product</strong>
+
+<% @order.orderproducts.each do |product|%>
+  <%= product.prd_name %>
+<% end %>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <% if signed_in? && current_user.admin? %>
