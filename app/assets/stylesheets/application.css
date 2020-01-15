@@ -23,5 +23,8 @@
     font-family: sans-serif;
     font-weight: bold;
     font-size: large;
-    text-c
-}
+   }
+.container1{
+    border-block-color: #733417;
+    border-block-width: 1px;
+   }

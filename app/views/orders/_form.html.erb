@@ -35,24 +35,24 @@
     <%= form.hidden_field :user_id, :value=>current_user.id %>
   </div>
 
-  <%= form.fields_for :orderproduct do |product_fields| %>
+  <%= form.fields_for :orderproducts do |product_fields| %>
     <div class="form-group">
       <div class="field">
         <%= product_fields.label :quantity %>
         <%= product_fields.text_field :quantity, class:"form-control" %>
       </div>
       <div class="field" >
-        <%= product_fields.label :name %>
-        <%= product_fields.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name,c.id, {'data-sku' => c.prd_sku}]}), class: "form-control" %>
+        <%= product_fields.label :prd_name %>
+        <%= product_fields.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name,c.id]}), class: "form-control" %>
       </div> 
     </div>  
   <% end %> 
   
-  <%= form.fields_for :address do |address_fields| %>
+  <%= form.fields_for :addresses do |address_fields| %>
     <div class="form-group">
       <div class="field" >
-        <%= address_fields.label :Address %>
-        <%= address_fields.select :address_id,options_for_select(["billing address","shipping address"]), class: "form-control" %>
+        <%= address_fields.label :addtype %>
+        <%= address_fields.select :addtype,options_for_select(["billing address","shipping address"]), class: "form-control" %>
       </div> 
       <div class="field">
         <%= address_fields.label :land_mark %>
@@ -78,11 +78,9 @@
         <%= address_fields.label :zip %>
         <%= address_fields.number_field :zip, class:"form-control"  %>
       </div>
-
       <div class="field">
-        <%= address_fields.label :user_id %>
-        <%= address_fields.text_field :user_id, class:"form-control"  %>
-      </div>
+        <%= address_fields.hidden_field :user_id, :value=>current_user.id %>
+     </div>
     </div>
   <% end %> 
   <div class="actions">

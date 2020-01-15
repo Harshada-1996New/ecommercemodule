@@ -14,20 +14,22 @@
       <div class="col-sm-6 text-center" style="background-color:blue;">action</div>
     </div>
     <% @orders.each do |order| %>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="col-sm-2"><%= order.ord_no %></div>
-          <div class="col-sm-3"><%= order.ord_tracking_no %></div>
-          <div class="col-sm-3"><%= order.payment_total %></div>
-          <div class="col-sm-2"><%= order.ord_type %></div>
-          <div class="col-sm-2"><%= order.user_id %></div>
+      <% if current_user.admin? || (current_user.id==order.user_id) %>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-sm-2"><%= order.ord_no %></div>
+            <div class="col-sm-3"><%= order.ord_tracking_no %></div>
+            <div class="col-sm-3"><%= order.payment_total %></div>
+            <div class="col-sm-2"><%= order.ord_type %></div>
+            <div class="col-sm-2"><%= order.user_id %></div>
+          </div>
+          <div class="col-sm-6">
+            <div class="col-sm-4"><%= link_to 'Show', order %></div>
+            <div class="col-sm-4"><%= link_to 'Edit', edit_order_path(order) %></div>
+            <div class="col-sm-4"><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <div class="col-sm-4"><%= link_to 'Show', order %></div>
-          <div class="col-sm-4"><%= link_to 'Edit', edit_order_path(order) %></div>
-          <div class="col-sm-4"><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-        </div>
-      </div>
+      <% end %>
     <% end %>
 </div>
 

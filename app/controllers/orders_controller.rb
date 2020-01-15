@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    #@op=@orders.orderproducts.all
+    #@addr=@orders.addresses.all
   end
 
   # GET /orders/1
@@ -16,6 +18,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.orderproducts.new
+    @order.addresses.new
   end
 
   # GET /orders/1/edit
@@ -26,7 +29,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    byebug
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -70,6 +73,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ord_no, :ord_tracking_no, :payment_total, :ord_type, :user_id, orderproducts_attributes:[:quantity,:product_id])
+      params.require(:order).permit(:ord_no, :ord_tracking_no, :payment_total, :ord_type, :selectedproduct, :user_id, orderproducts_attributes:[:quantity,:product_id], addresses_attributes:[:addtype,:land_mark,:street,:city,:state,:zip,:user_id])
     end
 end
