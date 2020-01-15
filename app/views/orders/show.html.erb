@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User id:</strong>
+  <%= @order.user_id %>
+</p>
+
+<p>
+  <strong>Ord no:</strong>
+  <%= @order.ord_no %>
+</p>
+
+<p>
+  <strong>Ord tracking no:</strong>
+  <%= @order.ord_tracking_no %>
+</p>
+
+<p>
+  <strong>Payment total:</strong>
+  <%= @order.payment_total %>
+</p>
+
+<p>
+  <strong>Ord type:</strong>
+  <%= @order.ord_type %>
+</p>
+<strong>your selected product</strong>
+
+<% @order.orderproducts.each do |product|%>
+  <%= product.prd_name %>
+<% end %>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<% if signed_in? && current_user.admin? %>
+  <%= link_to 'Back', orders_path %>
+<% end %>

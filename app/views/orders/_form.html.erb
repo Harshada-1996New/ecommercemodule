@@ -1,0 +1,91 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ord_no %>
+    <%= form.number_field :ord_no, :value => "#{rand(10..1000)}",:readonly => true,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ord_tracking_no %>
+    <%= form.number_field :ord_tracking_no,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payment_total %>
+    <%= form.text_field :payment_total,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ord_type %>
+    <%= form.text_field :ord_type,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, :value=>current_user.id %>
+  </div>
+
+  <%= form.fields_for :orderproduct do |product_fields| %>
+    <div class="form-group">
+      <div class="field">
+        <%= product_fields.label :quantity %>
+        <%= product_fields.text_field :quantity, class:"form-control" %>
+      </div>
+      <div class="field" >
+        <%= product_fields.label :name %>
+        <%= product_fields.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name,c.id, {'data-sku' => c.prd_sku}]}), class: "form-control" %>
+      </div> 
+    </div>  
+  <% end %> 
+  
+  <%= form.fields_for :address do |address_fields| %>
+    <div class="form-group">
+      <div class="field" >
+        <%= address_fields.label :Address %>
+        <%= address_fields.select :address_id,options_for_select(["billing address","shipping address"]), class: "form-control" %>
+      </div> 
+      <div class="field">
+        <%= address_fields.label :land_mark %>
+        <%= address_fields.text_field :land_mark, class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :street %>
+        <%= address_fields.text_field :street, class:"form-control"  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :city %>
+        <%= address_fields.text_field :city, class:"form-control"  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :state %>
+        <%= address_fields.text_field :state, class:"form-control"  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :zip %>
+        <%= address_fields.number_field :zip, class:"form-control"  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :user_id %>
+        <%= address_fields.text_field :user_id, class:"form-control"  %>
+      </div>
+    </div>
+  <% end %> 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

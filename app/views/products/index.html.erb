@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<%=form_tag products_path , :method =>'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "search" %>
+<% end %>
+
+<h1>Products</h1>
+
+<div class="container container1">
+    <div class="row">
+      <div class="col-sm-2" style="background-color:blue;">Prd sku</div>
+      <div class="col-sm-2" style="background-color:blue;">Prd name</div>
+      <div class="col-sm-2" style="background-color:blue;">Image</div>
+      <div class="col-sm-2" style="background-color:blue;">Price</div>
+    </div>
+    <% @product.each do |product| %>
+      <div class="row">
+        <div class="col-sm-2"><%= product.prd_sku %></div>
+        <div class="col-sm-2"><%= product.prd_name %></div>
+        
+        <div class="col-sm-2 "><%= image_tag(product.image.to_s, :size=>"80x50") %></div>
+        <div class="col-sm-2"><%= product.price %></div>
+        <div class="col-sm-1"><%= link_to 'Show', product %></div>
+        <% if signed_in? && current_user.admin? %>
+        <div class="col-sm-1"><%= link_to 'Edit', edit_product_path(product) %></div>
+        <div class="col-sm-1"><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        <% end %>
+      </div>
+    <% end %>
+</div>
+<br>
+<% if signed_in? && current_user.admin? %>
+<div class="col-sm-1 style1"><%= link_to 'New Product', new_product_path %></div>
+<% end %>
+
