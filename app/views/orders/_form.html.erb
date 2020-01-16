@@ -13,33 +13,33 @@
 
   <div class="field">
     <%= form.label :ord_no %>
-    <%= form.number_field :ord_no, :value => "#{rand(10..1000)}",:readonly => true,class: "form-control" %>
+    <%= form.number_field :ord_no, :value => "#{rand(10..1000)}",:readonly => true,class: "form-control", :required=>true%>
   </div>
 
   <div class="field">
     <%= form.label :ord_tracking_no %>
-    <%= form.number_field :ord_tracking_no, :value => "#{rand(10..1000)}",:readonly => true,class: "form-control" %>
+    <%= form.number_field :ord_tracking_no, :value => "#{rand(10..1000)}",:readonly => true,class: "form-control", :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :payment_total %>
-    <%= form.text_field :payment_total,class: "form-control" %>
+    <%= form.text_field :payment_total,class: "form-control", :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :ord_type %>
-    <%= form.text_field :ord_type,class: "form-control" %>
+    <%= form.text_field :ord_type,class: "form-control", :required=>true %>
   </div>
 
   <div class="field">
-    <%= form.hidden_field :user_id, :value=>current_user.id %>
+    <%= form.hidden_field :user_id, :value=>current_user.id, :required=>true %>
   </div>
 
   <%= form.fields_for :orderproducts do |product_fields| %>
     <div class="form-group">
       <div class="field">
         <%= product_fields.label :quantity %>
-        <%= product_fields.text_field :quantity, class:"form-control" %>
+        <%= product_fields.text_field :quantity, class:"form-control", :required=>true %>
       </div>
       <div class="field" >
         <%= product_fields.label :prd_name %>
@@ -56,27 +56,27 @@
       </div> 
       <div class="field">
         <%= address_fields.label :land_mark %>
-        <%= address_fields.text_field :land_mark, class:"form-control" %>
+        <%= address_fields.text_field :land_mark, class:"form-control", :required=>true %>
       </div>
 
       <div class="field">
         <%= address_fields.label :street %>
-        <%= address_fields.text_field :street, class:"form-control"  %>
+        <%= address_fields.text_field :street, class:"form-control", :required=>true  %>
       </div>
 
       <div class="field">
         <%= address_fields.label :city %>
-        <%= address_fields.text_field :city, class:"form-control"  %>
+        <%= address_fields.text_field :city, class:"form-control", :required=>true  %>
       </div>
 
       <div class="field">
         <%= address_fields.label :state %>
-        <%= address_fields.text_field :state, class:"form-control"  %>
+        <%= address_fields.text_field :state, class:"form-control", :required=>true  %>
       </div>
 
       <div class="field">
         <%= address_fields.label :zip %>
-        <%= address_fields.number_field :zip, class:"form-control"  %>
+        <%= address_fields.number_field :zip, class:"form-control", :required=>true  %>
       </div>
       <div class="field">
         <%= address_fields.hidden_field :user_id, :value=>current_user.id %>

@@ -17,36 +17,36 @@
   </div> 
   <div class="field">
     <%= form.label :land_mark %>
-    <%= form.text_field :land_mark %>
+    <%= form.text_field :land_mark, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :street %>
-    <%= form.text_field :street %>
+    <%= form.text_field :street, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :city %>
-    <%= form.text_field :city %>
+    <%= form.text_field :city, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :state %>
-    <%= form.text_field :state %>
+    <%= form.text_field :state, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :zip %>
-    <%= form.number_field :zip %>
+    <%= form.number_field :zip, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, :required=>true %>
   </div>
   <div class="field">
     <%= form.label :order_id %>
-    <%= form.text_field :order_id %>
+    <%= form.text_field :order_id, :required=>true %>
   </div>
   <div class="field">
     <%= form.hidden_field :user_id, :value=>current_user.id %>

@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :order_id %>
-    <%= form.text_field :order_id %>
+    <%= form.text_field :order_id, :required=>true %>
   </div>
 
   <div class="field">
     <%= form.label :product_id %>
-    <%= form.text_field :product_id %>
+    <%= form.text_field :product_id, :required=>true %>
   </div>
 
   <div class="actions">
