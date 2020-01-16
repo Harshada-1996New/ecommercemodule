@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <h2 class="text-center">Order Summary</h2>
 <div class="container">
 <table border="1px solid blue" class="tab">
@@ -35,20 +34,21 @@
    </div>   
    <p>
    <% i=0 %>
-   <% @temp=0 , @temp1=0 %>
+   <% @temp=0 %>
+   <% @temp1=0 %>
    <% @order.orderproducts.each do |order| %>
         <% i+=1 %>
         <h4>Product <%=  i %></h4>
         <strong>Product quantity: </strong><%= order.quantity %><br>
         <strong>Product Name: </strong><%= order.product.prd_name %><br>
         <strong>Product SKU: </strong><%= order.product.prd_sku %><br>
-        <strong>Product price: </strong><%= order.product.price %><br>
-        <strong>Product <%= i %> price: </strong><%= @temp=order.product.price * order.quantity %>
+        <strong>Product <%= i %>price: </strong><%= order.product.price %><br>
+        <% @temp=order.product.price * order.quantity %>
         <% @temp1+=@temp %>
         <br>
     <% end %>
     <br>
-    <strong>Total price: </strong><%= @temp1 %><br>
+    <strong>Total Product Price: </strong><%= @temp1 %><br>
     </p>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <% if signed_in? && current_user.admin? %>

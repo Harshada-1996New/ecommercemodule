@@ -14,7 +14,11 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    if current_user.admin? 
+      @product = Product.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /products/1/edit
@@ -68,6 +72,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:prd_sku, :prd_name, :image, :price )
+      params.require(:product).permit(:prd_sku, :prd_name, :image, :price ,:inventory)
     end
 end

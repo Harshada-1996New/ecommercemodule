@@ -4,7 +4,13 @@ class OrderproductsController < ApplicationController
   # GET /orderproducts
   # GET /orderproducts.json
   def index
-    @orderproducts = Orderproduct.all
+    if current_user.admin? 
+       @orderproducts = Orderproduct.all
+    else
+      redirect_to root_path
+    end
+
+
   end
 
   # GET /orderproducts/1
@@ -14,7 +20,11 @@ class OrderproductsController < ApplicationController
 
   # GET /orderproducts/new
   def new
-    @orderproduct = Orderproduct.new
+    if current_user.admin? 
+       @orderproduct = Orderproduct.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /orderproducts/1/edit

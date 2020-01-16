@@ -10,10 +10,11 @@
 
 <div class="container container1">
     <div class="row">
-      <div class="col-sm-2" style="background-color:blue;">Prd sku</div>
-      <div class="col-sm-2" style="background-color:blue;">Prd name</div>
-      <div class="col-sm-2" style="background-color:blue;">Image</div>
-      <div class="col-sm-2" style="background-color:blue;">Price</div>
+      <div class="col-sm-2 columnstyle">Prd sku</div>
+      <div class="col-sm-2 columnstyle">Prd name</div>
+      <div class="col-sm-2 columnstyle">Image</div>
+      <div class="col-sm-2 columnstyle">Price</div>
+      <div class="col-sm-1 columnstyle">Inventory</div>
     </div>
     <% @product.each do |product| %>
       <div class="row">
@@ -23,6 +24,7 @@
         
         <div class="col-sm-2 "><%= image_tag(product.image.to_s, :size=>"80x50") %></div>
         <div class="col-sm-2"><%= product.price %></div>
+        <div class="col-sm-1"><%= product.inventory %></div>
         <div class="col-sm-1"><%= link_to 'Show', product %></div>
         <% if signed_in? && current_user.admin? %>
         <div class="col-sm-1"><%= link_to 'Edit', edit_product_path(product) %></div>

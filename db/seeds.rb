@@ -10,7 +10,7 @@
     Product.create([{
     prd_sku:Faker::Company.spanish_organisation_number,
     prd_name:Faker::Commerce.product_name,
-    image: Faker::Avatar.image(slug: "my-own-slug", size: "80x50", format: "jpg"),
+    image: Faker::Avatar.image,
     price:Faker::Commerce.price
 }])
 end

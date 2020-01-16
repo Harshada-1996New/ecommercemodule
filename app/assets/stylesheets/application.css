@@ -29,3 +29,8 @@
     border-block-width: 1px;
    }
    .tab tr th{text-align: center;}
+   .columnstyle
+   {
+    background-color:rgb(224,255,255);
+    font-weight:bold;
+   }
