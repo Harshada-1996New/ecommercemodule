@@ -6,4 +6,5 @@ class Order < ApplicationRecord
     accepts_nested_attributes_for :orderproducts
     accepts_nested_attributes_for :products
     accepts_nested_attributes_for :addresses
+    validates :ord_type, presence: true
 end

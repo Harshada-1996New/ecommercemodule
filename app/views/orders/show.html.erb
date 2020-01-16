@@ -1,31 +1,58 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User id:</strong>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <strong>Ord no:</strong>
-  <%= @order.ord_no %>
-</p>
-
-<p>
-  <strong>Ord tracking no:</strong>
-  <%= @order.ord_tracking_no %>
-</p>
-
-<p>
-  <strong>Payment total:</strong>
-  <%= @order.payment_total %>
-</p>
-
-<p>
-  <strong>Ord type:</strong>
-  <%= @order.ord_type %>
-</p>
-
+<h2 class="text-center">Order Summary</h2>
+<div class="container">
+<table border="1px solid blue" class="tab">
+    <tr>
+          <th>User id</th>
+          <th>Ord no</th>
+          <th>Ord tracking no</th>
+          <th>Payment total</th>
+          <th>Ord type</th>
+          <th>Created at</th>
+          <th colspan='5'>User address</th>
+    </tr>
+    <tr>
+          <td><%= @order.user_id %></td>
+          <td><%= @order.ord_no %></td>
+          <td><%= @order.ord_tracking_no %></td>
+          <td> <%= @order.payment_total %></td>
+          <td> <%= @order.ord_type %></td>
+          <td>  <%= @order.created_at %></td>
+          <td> <%= username=(User.find_by(params[@order.user_id]).addresses.first.addtype) %></td>
+          <td><%= username=(User.find_by(params[@order.user_id]).addresses.first.city) %></td>
+          <td><%= username=(User.find_by(params[@order.user_id]).addresses.first.state) %></td>
+          <td><%= username=(User.find_by(params[@order.user_id]).addresses.first.zip) %></td>
+          <td><%= @user = current_user.email %></td>
+    </tr>
+  </table>
+  </div>
+  <div class="container">
+      <% if signed_in? && current_user.admin? %>
+      <strong>Admin</strong>
+      <% else %>
+      <p>Not admin</p>
+      <% end %>
+   </div>   
+   <p>
+   <% i=0 %>
+   <% @temp=0 , @temp1=0 %>
+   <% @order.orderproducts.each do |order| %>
+        <% i+=1 %>
+        <h4>Product <%=  i %></h4>
+        <strong>Product quantity: </strong><%= order.quantity %><br>
+        <strong>Product Name: </strong><%= order.product.prd_name %><br>
+        <strong>Product SKU: </strong><%= order.product.prd_sku %><br>
+        <strong>Product price: </strong><%= order.product.price %><br>
+        <strong>Product <%= i %> price: </strong><%= @temp=order.product.price * order.quantity %>
+        <% @temp1+=@temp %>
+        <br>
+    <% end %>
+    <br>
+    <strong>Total price: </strong><%= @temp1 %><br>
+    </p>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <% if signed_in? && current_user.admin? %>
   <%= link_to 'Back', orders_path %>
 <% end %>
+
+

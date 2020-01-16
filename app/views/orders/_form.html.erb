@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :ord_tracking_no %>
-    <%= form.number_field :ord_tracking_no,class: "form-control" %>
+    <%= form.number_field :ord_tracking_no, :value => "#{rand(10..1000)}",:readonly => true,class: "form-control" %>
   </div>
 
   <div class="field">
