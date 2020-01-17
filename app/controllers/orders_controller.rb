@@ -17,8 +17,8 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-    @order.orderproducts.new
-    @order.addresses.new
+    @order.orderproducts.build
+    @order.addresses.build
   end
 
   # GET /orders/1/edit
