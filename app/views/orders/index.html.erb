@@ -14,7 +14,7 @@
       <div class="col-sm-6 text-center" style="background-color:rgb(224,255,255);font-weight:bold;">action</div>
     </div>
     <% @orders.each do |order| %>
-      <% if current_user.admin? || (current_user.id==order.user_id) %>
+      <% if current_user.admin? || current_user.id==order.user_id %>
         <div class="row">
           <div class="col-sm-6">
             <div class="col-sm-2"><%= order.ord_no %></div>
