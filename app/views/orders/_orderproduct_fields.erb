@@ -1,0 +1,7 @@
+<fieldset>
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity, class:"form-control", :required=>true %>
+        <%= f.label :prd_name %>
+        <%= f.select :product_id,options_for_select(Product.all.collect{|c| [c.prd_name,c.id]}), class: "form-control" %>
+        <%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>

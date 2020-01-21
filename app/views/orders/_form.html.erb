@@ -34,20 +34,46 @@
   <div class="field">
     <%= form.hidden_field :user_id, :value=>current_user.id, :required=>true %>
   </div>
-  <div class="field">
-     <%= form.fields_for :orderproducts do |product_fields| %>
-       <%= render 'formop', form: product_fields %>
-     <% end %>
-  </div>
+
   <div class="form-actions">
-    <%= form.submit %>
-      <%= link_to_add_row('Add Product', form, :orderproducts, class: 'btn btn-primary') %>
+   <%= link_to_add_fields "Add product", form, :orderproducts %>
   </div>
-  <div class="field">
-    <%= form.fields_for :addresses do |address_fields| %>
-      <%= render 'formaddr', form: address_fields %>
-    <% end %> 
-  </div>
+
+  <%= form.fields_for :addresses do |address_fields| %>
+    <div class="form-group">
+      <div class="field" >
+        <%= address_fields.label :addtype %>
+        <%= address_fields.select :addtype,options_for_select(["billing address","shipping address"]), class: "form-control" %>
+      </div> 
+      <div class="field">
+        <%= address_fields.label :land_mark %>
+        <%= address_fields.text_field :land_mark, class:"form-control", :required=>true %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :street %>
+        <%= address_fields.text_field :street, class:"form-control", :required=>true  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :city %>
+        <%= address_fields.text_field :city, class:"form-control", :required=>true  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :state %>
+        <%= address_fields.text_field :state, class:"form-control", :required=>true  %>
+      </div>
+
+      <div class="field">
+        <%= address_fields.label :zip %>
+        <%= address_fields.number_field :zip, class:"form-control", :required=>true  %>
+      </div>
+      <div class="field">
+        <%= address_fields.hidden_field :user_id, :value=>current_user.id %>
+     </div>
+    </div>
+  <% end %>
   <div class="actions">
     <%= form.submit %>
   </div>
