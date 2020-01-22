@@ -17,6 +17,10 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
+<p>
+  <strong>Inventory:</strong>
+  <%= @product.inventory %>
+</p>
 <% if signed_in? && current_user.admin? %>
     <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>

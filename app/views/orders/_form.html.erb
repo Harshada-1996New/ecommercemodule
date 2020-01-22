@@ -22,11 +22,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :payment_total %>
-    <%= form.text_field :payment_total,class: "form-control", :required=>true %>
-  </div>
-
-  <div class="field">
     <%= form.label :ord_type %>
     <%= form.text_field :ord_type,class: "form-control", :required=>true %>
   </div>
@@ -39,41 +34,10 @@
    <%= link_to_add_fields "Add product", form, :orderproducts %>
   </div>
 
-  <%= form.fields_for :addresses do |address_fields| %>
-    <div class="form-group">
-      <div class="field" >
-        <%= address_fields.label :addtype %>
-        <%= address_fields.select :addtype,options_for_select(["billing address","shipping address"]), class: "form-control" %>
-      </div> 
-      <div class="field">
-        <%= address_fields.label :land_mark %>
-        <%= address_fields.text_field :land_mark, class:"form-control", :required=>true %>
-      </div>
-
-      <div class="field">
-        <%= address_fields.label :street %>
-        <%= address_fields.text_field :street, class:"form-control", :required=>true  %>
-      </div>
-
-      <div class="field">
-        <%= address_fields.label :city %>
-        <%= address_fields.text_field :city, class:"form-control", :required=>true  %>
-      </div>
-
-      <div class="field">
-        <%= address_fields.label :state %>
-        <%= address_fields.text_field :state, class:"form-control", :required=>true  %>
-      </div>
-
-      <div class="field">
-        <%= address_fields.label :zip %>
-        <%= address_fields.number_field :zip, class:"form-control", :required=>true  %>
-      </div>
-      <div class="field">
-        <%= address_fields.hidden_field :user_id, :value=>current_user.id %>
-     </div>
-    </div>
+  <%= form.fields_for :addresses do |builder| %>
+     <%= render 'address_fields', :form => builder %>
   <% end %>
+  
   <div class="actions">
     <%= form.submit %>
   </div>

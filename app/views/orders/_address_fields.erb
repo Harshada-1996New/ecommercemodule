@@ -1,0 +1,33 @@
+<div class="form-group">
+      <div class="field" >
+        <%= form.label :addtype %>
+        <%= form.select :addtype,options_for_select(["billing address","shipping address"]), class: "form-control" %>
+      </div> 
+      <div class="field">
+        <%= form.label :land_mark %>
+        <%= form.text_field :land_mark, class:"form-control", :required=>true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :street %>
+        <%= form.text_field :street, class:"form-control", :required=>true  %>
+      </div>
+
+      <div class="field">
+        <%= form.label :city %>
+        <%= form.text_field :city, class:"form-control", :required=>true  %>
+      </div>
+
+      <div class="field">
+        <%= form.label :state %>
+        <%= form.text_field :state, class:"form-control", :required=>true  %>
+      </div>
+
+      <div class="field">
+        <%= form.label :zip %>
+        <%= form.number_field :zip, class:"form-control", :required=>true  %>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :user_id, :value=>current_user.id %>
+     </div>
+    </div>

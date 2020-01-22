@@ -23,12 +23,16 @@
   </div>
   <div class="field">
     <%= form.label :image %>
-    <%= form.text_field :image, :required=>true %>
+    <%= form.text_field :image %>
   </div>
 
   <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price, :required=>true %>
+  </div>
+  <div class="field">
+    <%= form.label :inventory %>
+    <%= form.text_field :inventory, :required=>true %>
   </div>
 
   <div class="actions">

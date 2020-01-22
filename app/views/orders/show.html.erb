@@ -41,7 +41,6 @@
         <h4>Product <%=  i %></h4>
         <strong>Product quantity: </strong><%= order.quantity %><br>
         <strong>Product Name: </strong><%= order.product.prd_name %><br>
-        <strong>Product SKU: </strong><%= order.product.prd_sku %><br>
         <strong>Product <%= i %>price: </strong><%= order.product.price %><br>
         <% @temp=order.product.price * order.quantity %>
         <% @temp1+=@temp %>
